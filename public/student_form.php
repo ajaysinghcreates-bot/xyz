@@ -48,12 +48,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Sanitize and validate inputs
-    $student['first_name'] = trim($_POST['first_name']);
-    $student['last_name'] = trim($_POST['last_name']);
-    // ... add all other fields from the form
+    $first_name = trim($_POST['first_name']);
+    $last_name = trim($_POST['last_name']);
+    $dob = $_POST['dob'];
+    $gender = $_POST['gender'];
+    $address = trim($_POST['address']);
+    $parent_name = trim($_POST['parent_name']);
+    $parent_contact = trim($_POST['parent_contact']);
+    $admission_date = $_POST['admission_date'];
+
+    // Update $student array for form repopulation
+    $student['first_name'] = $first_name;
+    $student['last_name'] = $last_name;
+    $student['dob'] = $dob;
+    $student['gender'] = $gender;
+    $student['address'] = $address;
+    $student['parent_name'] = $parent_name;
+    $student['parent_contact'] = $parent_contact;
+    $student['admission_date'] = $admission_date;
 
     // Basic validation
-    if (empty($student['first_name']) || empty($student['last_name'])) {
+    if (empty($first_name) || empty($last_name)) {
         $errors[] = 'First and Last name are required.';
     }
 
@@ -89,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $admission_id = 'ADM-' . date('Y') . '-' . rand(1000, 9999);
                 $sql = "INSERT INTO students (admission_id, first_name, last_name, dob, gender, address, parent_name, parent_contact, admission_date, photo_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = $db->prepare($sql);
-                $stmt->execute([$admission_id, $_POST['first_name'], $_POST['last_name'], $_POST['dob'], $_POST['gender'], $_POST['address'], $_POST['parent_name'], $_POST['parent_contact'], $_POST['admission_date'], $photo_path]);
+                $stmt->execute([$admission_id, $first_name, $last_name, $dob, $gender, $address, $parent_name, $parent_contact, $admission_date, $photo_path]);
                 $new_student_id = $db->lastInsertId();
                 log_audit('STUDENT_CREATE', 'Created student ID: ' . $new_student_id);
                 $_SESSION['success_message'] = 'New student added successfully!';

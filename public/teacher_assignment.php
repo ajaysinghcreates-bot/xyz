@@ -110,7 +110,11 @@ include_once ROOT_PATH . '/templates/layouts/header.php';
         <!-- Teacher Assignment Form -->
         <?php if ($selected_class_id): ?>
         <div class="card">
-            <div class="card-header">Assign Teachers for Class: <?php echo escape($db->query("SELECT class_name FROM classes WHERE id=$selected_class_id")->fetchColumn()); ?></div>
+            <div class="card-header">Assign Teachers for Class: <?php
+                $class_name_stmt = $db->prepare("SELECT class_name FROM classes WHERE id = ?");
+                $class_name_stmt->execute([$selected_class_id]);
+                echo escape($class_name_stmt->fetchColumn());
+            ?></div>
             <div class="card-body">
                 <form action="teacher_assignment.php?class_id=<?php echo $selected_class_id; ?>" method="POST">
                     <input type="hidden" name="csrf_token" value="<?php echo generate_csrf_token(); ?>">

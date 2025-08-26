@@ -22,14 +22,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['save_expense'])) {
         $errors[] = "Category, Amount, and Date are required.";
     }
 
+    $description = trim($_POST['description']);
+    $vendor = trim($_POST['vendor']);
+
     if(empty($errors)) {
         try {
             $sql = "INSERT INTO expenses (expense_category, amount, expense_date, description, vendor, created_by_user_id) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $db->prepare($sql);
             $stmt->execute([
                 $category, $amount, $expense_date, 
-                trim($_POST['description']), 
-                trim($_POST['vendor']), 
+                $description, 
+                $vendor, 
                 $_SESSION['user_id']
             ]);
             $_SESSION['success_message'] = 'Expense recorded successfully!';

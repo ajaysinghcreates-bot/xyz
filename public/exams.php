@@ -49,9 +49,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // GET handling for editing
 if (isset($_GET['edit'])) {
-    $stmt = $db->prepare("SELECT * FROM exams WHERE id = ?");
-    $stmt->execute([$_GET['edit']]);
-    $edit_item = $stmt->fetch();
+    $edit_id = filter_input(INPUT_GET, 'edit', FILTER_VALIDATE_INT);
+    if ($edit_id) {
+        $stmt = $db->prepare("SELECT * FROM exams WHERE id = ?");
+        $stmt->execute([$edit_id]);
+        $edit_item = $stmt->fetch();
+    }
 }
 
 // Data for forms and lists
