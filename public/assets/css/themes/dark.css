@@ -1,0 +1,3 @@
+/* Dark Theme */
+body { filter: invert(1) hue-rotate(180deg); }
+img, .hero-section { filter: invert(1) hue-rotate(180deg); }

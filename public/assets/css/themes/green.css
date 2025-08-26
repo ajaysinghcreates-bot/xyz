@@ -1,0 +1,7 @@
+/* Green Theme */
+:root {
+    --bs-primary: #198754; /* Bootstrap Success Green */
+    --bs-primary-rgb: 25, 135, 84;
+}
+.btn-primary { background-color: var(--bs-primary); border-color: var(--bs-primary); }
+.bg-primary { background-color: var(--bs-primary) !important; }
