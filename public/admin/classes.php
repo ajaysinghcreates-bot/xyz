@@ -65,5 +65,5 @@ if (isset($_GET['edit'])) {
 $classes = $db->query("SELECT * FROM classes ORDER BY numeric_level, class_name ASC")->fetchAll();
 
 $page_title = 'Manage Classes';
-$view_to_load = ROOT_PATH . '/templates/views/classes_view.php';
+$view_to_load = ROOT_PATH . '/templates/views/admin/classes_view.php';
 require_once ROOT_PATH . '/templates/layouts/dashboard.php';

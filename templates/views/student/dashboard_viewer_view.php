@@ -23,6 +23,28 @@
 <div class="row mt-4">
     <div class="col-md-12">
         <div class="card">
+            <div class="card-header">My Schedule</div>
+            <div class="card-body">
+                <p>Your class schedule will be displayed here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">My Grades</div>
+            <div class="card-body">
+                <p>Your grades will be displayed here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
             <div class="card-header">My Fee Status</div>
             <div class="card-body">
                 <p>Fee details will be shown here.</p>

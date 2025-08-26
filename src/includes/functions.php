@@ -34,6 +34,11 @@ function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
+// Check if a user is an admin
+function is_admin() {
+    return get_user_role() === 'Admin';
+}
+
 // Get the role of the logged-in user
 function get_user_role() {
     return isset($_SESSION['user_role']) ? $_SESSION['user_role'] : null;

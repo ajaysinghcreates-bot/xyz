@@ -11,12 +11,12 @@ if ($user_role === 'Viewer') {
     $student_data = $stmt->fetch();
 
     $page_title = 'Student Dashboard';
-    $view_to_load = ROOT_PATH . '/templates/views/dashboard_viewer_view.php';
+    $view_to_load = ROOT_PATH . '/templates/views/student/dashboard_viewer_view.php';
 
 } else {
     // --- Admin/Staff Dashboard Logic ---
     $page_title = 'Admin Dashboard';
-    $view_to_load = ROOT_PATH . '/templates/views/dashboard_view.php';
+    $view_to_load = ROOT_PATH . '/templates/views/admin/dashboard_view.php';
 }
 
 // Load the main dashboard layout, which will in turn load the correct view

@@ -28,6 +28,7 @@
     <div class="container">
         <h1 class="display-4">Welcome to Our School</h1>
         <p class="lead">Nurturing future leaders through excellence in education.</p>
+        <a href="login.php" class="btn btn-lg btn-success">Student & Staff Login</a>
     </div>
 </header>
 

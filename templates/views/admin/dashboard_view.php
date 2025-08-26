@@ -24,15 +24,31 @@
             </div>
         </div>
     </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-danger mb-3">
+            <div class="card-body">
+                <h5 class="card-title"><i class="fas fa-exclamation-triangle"></i> Pending Tasks</h5>
+                <p class="card-text fs-4">5</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Charts -->
 <div class="row mt-4">
-    <div class="col-md-12">
+    <div class="col-md-8">
         <div class="card">
             <div class="card-header">Income vs. Expense (Last 6 Months)</div>
             <div class="card-body">
                 <canvas id="incomeExpenseChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">User Roles</div>
+            <div class="card-body">
+                <canvas id="userRolesChart"></canvas>
             </div>
         </div>
     </div>
@@ -49,12 +65,11 @@ $(document).ready(function() {
             // Update widgets
             $('#total-students').text(data.total_students);
             $('#total-staff').text(data.total_staff);
-            $('#fees-this-month').text('
- + parseFloat(data.fees_this_month).toFixed(2));
+            $('#fees-this-month').text('$ ' + parseFloat(data.fees_this_month).toFixed(2));
 
-            // Render Chart
-            var ctx = document.getElementById('incomeExpenseChart').getContext('2d');
-            new Chart(ctx, {
+            // Render Income/Expense Chart
+            var incomeExpenseCtx = document.getElementById('incomeExpenseChart').getContext('2d');
+            new Chart(incomeExpenseCtx, {
                 type: 'bar',
                 data: {
                     labels: data.income_expense_chart.labels,
@@ -62,16 +77,12 @@ $(document).ready(function() {
                         {
                             label: 'Income',
                             data: data.income_expense_chart.income,
-                            backgroundColor: 'rgba(75, 192, 192, 0.5)',
-                            borderColor: 'rgba(75, 192, 192, 1)',
-                            borderWidth: 1
+                            backgroundColor: '#10B981',
                         },
                         {
                             label: 'Expense',
                             data: data.income_expense_chart.expense,
-                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1
+                            backgroundColor: '#EF4444',
                         }
                     ]
                 },
@@ -81,6 +92,19 @@ $(document).ready(function() {
                             beginAtZero: true
                         }
                     }
+                }
+            });
+
+            // Render User Roles Chart
+            var userRolesCtx = document.getElementById('userRolesChart').getContext('2d');
+            new Chart(userRolesCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Admins', 'Staff', 'Students'],
+                    datasets: [{
+                        data: [data.total_admins, data.total_staff, data.total_students],
+                        backgroundColor: ['#4F46E5', '#10B981', '#F59E0B'],
+                    }]
                 }
             });
         }

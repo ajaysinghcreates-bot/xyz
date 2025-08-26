@@ -14,7 +14,7 @@ define('DB_CHARSET', 'utf8mb4');
 // Application Settings
 // ----------------------------
 define('APP_NAME', 'School Management System');
-define('APP_URL', 'http://localhost/school/public'); // Change to your actual URL
+define('APP_URL', 'http://localhost'); // Change to your actual URL
 define('DEBUG_MODE', true); // Set to false in production
 
 // ----------------------------
